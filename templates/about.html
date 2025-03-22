@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}About SkinSaver - Your Skincare Price Comparison Tool{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body p-5">
+                        <h1 class="mb-4 text-center">About SkinSaver</h1>
+                        
+                        <p class="lead text-center mb-5">Your ultimate skincare product price comparison platform.</p>
+                        
+                        <h3>Our Mission</h3>
+                        <p>SkinSaver was created as part of a 24-hour hackathon to solve a common problem: finding the best deals on skincare products across multiple e-commerce platforms. With so many online stores selling the same products at different prices, it can be time-consuming to manually check each site for the best deal.</p>
+                        
+                        <p>Our mission is to simplify this process by automatically collecting and comparing prices from popular e-commerce sites like Amazon, Flipkart, and Nykaa, helping you save both time and money.</p>
+                        
+                        <h3 class="mt-4">How It Works</h3>
+                        <p>SkinSaver uses advanced web scraping technology to collect real-time price information from multiple e-commerce platforms. Our system:</p>
+                        
+                        <ul>
+                            <li>Regularly crawls popular skincare product listings from major retailers</li>
+                            <li>Normalizes and compares the data to find the best deals</li>
+                            <li>Provides you with up-to-date price comparisons</li>
+                            <li>Links directly to the original product listings for easy purchasing</li>
+                        </ul>
+                        
+                        <h3 class="mt-4">Features</h3>
+                        <div class="row mt-3">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <i class="fas fa-search fa-2x text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Search & Compare</h5>
+                                        <p>Search for specific skincare products and instantly see price comparisons across multiple platforms.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <i class="fas fa-chart-line fa-2x text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Price Tracking</h5>
+                                        <p>Our system regularly updates prices to ensure you're getting the most current information.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <i class="fas fa-tag fa-2x text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Best Deals</h5>
+                                        <p>We highlight the best deals to make your decision-making process easier.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <i class="fas fa-link fa-2x text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Direct Links</h5>
+                                        <p>One-click access to the original product listings for seamless purchasing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="mt-4">Our Tech Stack</h3>
+                        <p>SkinSaver was built using the following technologies:</p>
+                        <ul>
+                            <li><strong>Backend:</strong> Flask (Python web framework)</li>
+                            <li><strong>Web Scraping:</strong> Beautiful Soup, Requests, Trafilatura</li>
+                            <li><strong>Scheduling:</strong> APScheduler for periodic data updates</li>
+                            <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript</li>
+                        </ul>
+                        
+                        <h3 class="mt-4">The Team</h3>
+                        <p>SkinSaver was developed by a dedicated team of developers during a 24-hour hackathon. Our team combined expertise in web development, data scraping, and UI/UX design to create this platform in a limited timeframe.</p>
+                        
+                        <div class="mt-5 text-center">
+                            <p class="lead">Have questions or feedback?</p>
+                            <a href="#" class="btn btn-primary btn-lg">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

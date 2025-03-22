@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - SkinSaver{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('search', query='skincare') }}">Skincare</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </nav>
+        
+        <div class="product-detail">
+            <div class="row">
+                <!-- Product Image -->
+                <div class="col-md-5">
+                    {% if product.image %}
+                        <img src="{{ product.image }}" alt="{{ product.name }}" class="product-detail-img">
+                    {% else %}
+                        <div class="d-flex justify-content-center align-items-center bg-light" style="height: 400px;">
+                            <i class="fas fa-image fa-5x text-secondary"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Product Info -->
+                <div class="col-md-7">
+                    <div class="product-badge mb-2">{{ product.source }}</div>
+                    <h1 class="product-detail-title">{{ product.name }}</h1>
+                    
+                    <div class="product-rating mb-3">
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>{{ product.rating }}</span>
+                    </div>
+                    
+                    <div class="product-detail-price">{{ product.price }}</div>
+                    
+                    <div class="product-description mb-4">
+                        <h4>Description</h4>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>High-quality skincare product</li>
+                            <li>Dermatologically tested</li>
+                            <li>Suitable for all skin types</li>
+                            <li>Free from harmful chemicals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                        <a href="{{ product.link }}" target="_blank" class="btn btn-buy btn-lg">
+                            Buy Now <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}" class="d-inline">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                            </button>
+                        </form>
+                        <button class="btn btn-outline-secondary btn-lg">Add to Wishlist</button>
+                    </div>
+                    
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <div class="alert alert-success" role="alert">
+                        <i class="fas fa-check-circle me-2"></i> Found the lowest price across multiple platforms!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Price Comparison Table -->
+            <div class="mt-5">
+                <h3 class="mb-4">Price Comparison</h3>
+                <div class="table-responsive">
+                    <table class="price-comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Source</th>
+                                <th>Price</th>
+                                <th>Availability</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        {{ product.source }}
+                                    </div>
+                                </td>
+                                <td>{{ product.price }}</td>
+                                <td><span class="badge bg-success">In Stock</span></td>
+                                <td>
+                                    <a href="{{ product.link }}" target="_blank" class="btn btn-sm btn-primary">View Deal</a>
+                                </td>
+                            </tr>
+                            <!-- Similar products from other sources if available -->
+                            {% for similar in similar_products %}
+                                {% if similar.source != product.source %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-shopping-cart me-2"></i>
+                                                {{ similar.source }}
+                                            </div>
+                                        </td>
+                                        <td>{{ similar.price }}</td>
+                                        <td><span class="badge bg-success">In Stock</span></td>
+                                        <td>
+                                            <a href="{{ similar.link }}" target="_blank" class="btn btn-sm btn-primary">View Deal</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Similar Products -->
+        {% if similar_products %}
+            <div class="similar-products">
+                <h3>Similar Products</h3>
+                <div class="row">
+                    {% for similar in similar_products %}
+                        <div class="col-md-3 mb-4">
+                            <div class="product-card">
+                                <div class="product-image-container">
+                                    {% if similar.image %}
+                                        <img src="{{ similar.image }}" alt="{{ similar.name }}" class="product-image">
+                                    {% else %}
+                                        <div class="d-flex justify-content-center align-items-center h-100 bg-light">
+                                            <i class="fas fa-image fa-3x text-secondary"></i>
+                                        </div>
+                                    {% endif %}
+                                    <div class="product-badge">{{ similar.source }}</div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">{{ similar.name }}</h3>
+                                    <div class="product-rating">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span>{{ similar.rating }}</span>
+                                    </div>
+                                    <div class="product-price">{{ similar.price }}</div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{{ url_for('product_detail', product_id=similar.id) }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                                        <div>
+                                            <form method="post" action="{{ url_for('add_to_cart', product_id=similar.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-success">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </form>
+                                            <a href="{{ similar.link }}" target="_blank" class="btn btn-sm btn-primary">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

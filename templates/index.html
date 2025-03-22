@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+
+{% block title %}SkinSaver - Find the Best Skincare Deals{% endblock %}
+
+{% block content %}
+    <!-- Hero Section - Luxury skincare style inspired by Tira & Forest Essential -->
+    <section class="hero position-relative" style="
+        background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+        padding: 100px 0 120px;
+        overflow: hidden;
+    ">
+        <!-- Decorative elements -->
+        <div class="position-absolute" style="
+            width: 300px; 
+            height: 300px; 
+            border-radius: 50%; 
+            background-color: rgba(255,255,255,0.1); 
+            top: -150px; 
+            left: -100px;
+        "></div>
+        <div class="position-absolute" style="
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            background-color: rgba(255,255,255,0.1); 
+            bottom: -100px; 
+            right: 10%;
+        "></div>
+        
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white text-md-start text-center mb-md-0 mb-5">
+                    <h5 class="text-white-50 mb-3 text-uppercase" style="letter-spacing: 3px; font-weight: 500;">Your Skincare Companion</h5>
+                    <h1 class="display-4 fw-bold mb-4" style="letter-spacing: -0.5px;">Find the Best Skincare Deals</h1>
+                    <p class="lead mb-5">Compare prices from Amazon, Flipkart, Nykaa and more to find the best deals on your favorite skincare products.</p>
+                    
+                    <div class="search-box mb-4" style="max-width: 500px; margin-left: 0;">
+                        <form action="{{ url_for('search') }}" method="get">
+                            <div class="input-group">
+                                <input type="text" name="query" class="form-control form-control-lg" style="border-radius: 30px 0 0 30px; padding: 12px 25px; border: none;" placeholder="Search for skincare products...">
+                                <button type="submit" class="btn btn-light btn-search" style="border-radius: 0 30px 30px 0; padding: 12px 25px; font-weight: 600;">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="popular-searches text-md-start text-center">
+                        <span class="text-white-50">Popular: </span>
+                        <a href="{{ url_for('search', query='face wash') }}" class="badge px-3 py-2 bg-light text-dark text-decoration-none me-2 mb-2 d-inline-block" style="border-radius: 30px; font-weight: 500;">Face Wash</a>
+                        <a href="{{ url_for('search', query='moisturizer') }}" class="badge px-3 py-2 bg-light text-dark text-decoration-none me-2 mb-2 d-inline-block" style="border-radius: 30px; font-weight: 500;">Moisturizer</a>
+                        <a href="{{ url_for('search', query='sunscreen') }}" class="badge px-3 py-2 bg-light text-dark text-decoration-none mb-2 d-inline-block" style="border-radius: 30px; font-weight: 500;">Sunscreen</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block text-end position-relative">
+                    <img src="https://img.freepik.com/free-photo/beautiful-woman-face-portrait-beauty-model-with-clear-fresh-skin_186202-7773.jpg" alt="Beautiful skincare" class="img-fluid rounded-4" style="
+                        max-width: 90%;
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                        transform: rotate(3deg);
+                        border: 8px solid rgba(255,255,255,0.9);
+                    ">
+                    <div class="position-absolute" style="
+                        bottom: -30px;
+                        left: 0;
+                        background-color: white;
+                        padding: 20px;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                        width: 180px;
+                        text-align: center;
+                    ">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="fas fa-tags fa-lg text-primary me-2"></i>
+                            <span class="fw-bold text-primary" style="font-size: 1.2rem;">Save up to</span>
+                        </div>
+                        <div class="fw-bold display-6 text-secondary">40%</div>
+                        <p class="mb-0 small text-muted">on premium skincare</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories - Enhanced design inspired by Tira & Forest Essential -->
+    <section class="container my-5 py-3">
+        <div class="text-center mb-5">
+            <h2 class="mb-3">Explore Categories</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Discover the best skincare products across different categories and find your perfect match</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tint fa-2x text-primary"></i>
+                    </div>
+                    <h3>Moisturizers</h3>
+                    <p>Hydrate and nourish your skin with the best moisturizers from top brands</p>
+                    <a href="{{ url_for('search', query='moisturizer') }}" class="btn btn-outline-primary">Browse Collection</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-sun fa-2x text-warning"></i>
+                    </div>
+                    <h3>Sunscreens</h3>
+                    <p>Protect your skin from harmful UV rays with premium quality sunscreens</p>
+                    <a href="{{ url_for('search', query='sunscreen') }}" class="btn btn-outline-primary">Browse Collection</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-soap fa-2x text-info"></i>
+                    </div>
+                    <h3>Face Wash</h3>
+                    <p>Cleanse and refresh your skin with the perfect face wash for your skin type</p>
+                    <a href="{{ url_for('search', query='face wash') }}" class="btn btn-outline-primary">Browse Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products - Premium skincare style -->
+    <section class="container my-5 py-4">
+        <div class="text-center mb-5">
+            <h2 class="mb-3">Featured Products</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Discover our handpicked selection of premium skincare products at the best prices</p>
+        </div>
+        
+        <div class="row">
+            {% if featured_products %}
+                {% for product in featured_products %}
+                    <div class="col-md-3 mb-4">
+                        <div class="product-card">
+                            <div class="product-image-container">
+                                {% if product.image %}
+                                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+                                {% else %}
+                                    <div class="d-flex justify-content-center align-items-center h-100 bg-light">
+                                        <i class="fas fa-image fa-3x text-secondary"></i>
+                                    </div>
+                                {% endif %}
+                                <div class="product-badge">{{ product.source }}</div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">{{ product.name }}</h3>
+                                <div class="product-rating">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span>{{ product.rating }}</span>
+                                </div>
+                                <div class="product-price">
+                                    {{ product.price }}
+                                    {% if loop.index % 3 == 0 %}
+                                        <span class="original-price">₹{{ (product.price|replace('₹','')|float * 1.25)|round(2) }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline-primary">View Details</a>
+                                    <a href="{{ product.link }}" target="_blank" class="btn btn-primary">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('search', query='skincare') }}" class="btn btn-lg btn-outline-primary px-5" style="border-radius: 30px; padding: 12px 30px; font-weight: 600; letter-spacing: 0.05em;">
+                        View All Products <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <div class="d-flex flex-column align-items-center">
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                            <path d="M20 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H4C2.9 8 2 8.9 2 10V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V10C22 8.9 21.1 8 20 8ZM9 6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8H9V6ZM20 20H4V10H20V20ZM13 15C13 15.55 12.55 16 12 16C11.45 16 11 15.55 11 15C11 14.45 11.45 14 12 14C12.55 14 13 14.45 13 15Z" fill="#B0B0B0"/>
+                        </svg>
+                        <h3 class="fw-bold mb-2">Loading Premium Products</h3>
+                        <p class="text-muted mb-4" style="max-width: 500px;">We're curating the best skincare products from top brands across multiple platforms. Please check back soon!</p>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-primary px-4" style="border-radius: 30px;">Refresh</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Why Choose Us - Luxury skincare style inspired by Tira and The Body Shop -->
+    <section class="bg-light py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">Why Choose SkinSaver?</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">We're dedicated to helping you find the best skincare products at the best prices</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-search-dollar fa-2x text-primary"></i>
+                        </div>
+                        <h3>Price Comparison</h3>
+                        <p>We compare prices across multiple platforms in real-time so you don't have to. Save money on every skincare purchase and always get the best deal.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync fa-2x text-primary"></i>
+                        </div>
+                        <h3>Real-Time Updates</h3>
+                        <p>Our prices are updated frequently to ensure you get the most current deals available. Never miss out on a price drop on your favorite products.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-shield fa-2x text-primary"></i>
+                        </div>
+                        <h3>Trusted Sources</h3>
+                        <p>We only compare prices from legitimate, trusted e-commerce platforms to ensure product authenticity and secure shopping experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section - Premium design inspired by Forest Essential & Nykaa -->
+    <section class="container my-5 py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card border-0" style="border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--card-shadow);">
+                    <div class="row g-0">
+                        <div class="col-md-5 bg-primary position-relative d-flex align-items-center" style="background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));">
+                            <div class="position-absolute w-100 h-100 opacity-20" style="background-image: url('https://img.freepik.com/free-photo/flat-lay-natural-self-care-products-composition_23-2148990019.jpg?w=826&t=st=1667835858~exp=1667836458~hmac=bef9f9e6f9cb9cb932be3c451cc64a8d9c52bc1e5dcb23757c6c443cfee995a5'); background-size: cover; background-position: center;"></div>
+                            <div class="p-5 text-white position-relative">
+                                <h2 class="fw-bold mb-4">Stay Updated</h2>
+                                <p class="mb-0 fs-5">Get exclusive offers, skincare tips, and early access to new product listings</p>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body p-5">
+                                <h3 class="fw-bold mb-3">Join Our Newsletter</h3>
+                                <p class="text-muted mb-4">Be the first to know about price drops, new arrivals, and exclusive offers on your favorite skincare products.</p>
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-lg" style="border-radius: 30px; padding: 12px 20px;" placeholder="Your Name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control form-control-lg" style="border-radius: 30px; padding: 12px 20px;" placeholder="Your Email Address">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100" style="border-radius: 30px; padding: 12px 20px; font-weight: 600; letter-spacing: 0.05em;">Subscribe Now</button>
+                                </form>
+                                <p class="mt-3 text-center text-muted small">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
